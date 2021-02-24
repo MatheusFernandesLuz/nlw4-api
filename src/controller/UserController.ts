@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
-import { User } from "../models/User";
+import { getCustomRepository } from "typeorm";
+import { UsersRepository } from "../repositories/UsersRepository";
 
 class UserController {
   async create(request: Request, response: Response) {
     const { body } = request;
     const { name, email } = body;
 
-    const usersRepository = getRepository(User);
+    const usersRepository = getCustomRepository(UsersRepository);
     const newUser = usersRepository.create({ name, email });
 
     try {
@@ -16,7 +16,7 @@ class UserController {
       return response.status(400).json({ error: "Usuário já existe" });
     }
 
-    return response.json(newUser);
+    return response.status(201).json(newUser);
   }
 }
 
