@@ -11,4 +11,3 @@ Projeto de desenvolvimento de uma API em NodeJS da RocketSeat.
   1. yarn install
   2. yarn dev
 ```
-TESTE
